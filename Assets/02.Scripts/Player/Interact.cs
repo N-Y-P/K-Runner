@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class Interact : MonoBehaviour
 {
     //레이캐스트로 interactable 레이어를 가진 아이템을 보면 그 아이템의 promptText가 뜨도록
+
     [Header("레이어 마스크")]
     public LayerMask interactLayerMask;
 
@@ -41,20 +42,6 @@ public class Interact : MonoBehaviour
                 }
                 return;
             }
-            /*
-            if (hit.collider.gameObject != interactPrefab)
-            {
-                interactPrefab = hit.collider.gameObject;
-                interactable = hit.collider.GetComponent<IInteractable>();
-                SetPromptText();
-            }
-            else
-            {
-                interactable = null;
-                interactPrefab = null;
-                promptText.gameObject.SetActive(false);
-            }
-            */
         }
 
         ClearPrompt();

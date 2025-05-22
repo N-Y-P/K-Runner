@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class ItemSlot : MonoBehaviour
 {
     //아이템 슬롯 프리팹에 붙일 스크립트
+
     public Image icon;
     public Image fillImage;
     public TextMeshProUGUI reuseText;

@@ -14,6 +14,7 @@ public class ItemData : ScriptableObject
     [Header("아이템 효과")]
     public float staminaRecovery;
     public float dash;
+    public float duration;//지속시간
 
     [Header("재사용 시간")]
     public float reuseTime;
