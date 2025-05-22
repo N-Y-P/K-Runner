@@ -7,6 +7,7 @@ public class ItemData : ScriptableObject
 {
     [Header("아이템 정보")]
     public string itemName;
+    [TextArea]
     public string description;
 
     [Header("아이템 효과")]

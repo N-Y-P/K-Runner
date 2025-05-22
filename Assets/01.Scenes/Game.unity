@@ -1054,7 +1054,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 55
   camPos: {fileID: 6017957516144547734}
-  minXLook: -30
+  minXLook: -40
   maxXLook: 40
   lookSensitivity: 0.1
 --- !u!1001 &2925914992162767836

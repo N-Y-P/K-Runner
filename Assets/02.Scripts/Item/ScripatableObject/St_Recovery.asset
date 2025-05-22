@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: St_Recovery
   m_EditorClassIdentifier: 
   itemName: "\uCCAD\uBA85\uC8FC"
-  description: "\uAE30\uB825\uC744 \uC18C\uD3ED \uD68C\uBCF5\uC2DC\uCF1C\uC900\uB2E4"
+  description: "\uAE30\uB825\uC744 \uC18C\uD3ED \uD68C\uBCF5\uC2DC\uCF1C\uC900\uB2E4\n\n[E]
+    \uD0A4\uB97C \uB20C\uB7EC \uCC59\uAE30\uC790"
   staminaRecovery: 10
   dash: 0
   reuseTime: 5

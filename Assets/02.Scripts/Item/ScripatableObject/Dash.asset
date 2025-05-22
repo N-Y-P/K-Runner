@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: "\uD48D\uC6B4\uD5A5"
   description: "\uD5A5\uC744 \uB4E4\uC774\uB9C8\uC2DC\uBA74 \uC21C\uAC04\uC801\uC73C\uB85C
-    \uBE60\uB974\uAC8C \uB2EC\uB9B4 \uC218 \uC788\uB2E4."
+    \uBE60\uB974\uAC8C \uB2EC\uB9B4 \uC218 \uC788\uB2E4\n\n[E] \uD0A4\uB97C \uB20C\uB7EC
+    \uCC59\uAE30\uC790"
   staminaRecovery: 0
   dash: 10
   reuseTime: 0
