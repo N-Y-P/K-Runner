@@ -9,7 +9,7 @@ public class ItemData : ScriptableObject
     public string itemName;
     [TextArea]
     public string description;
-    public Sprite imgae;
+    public Sprite image;
 
     [Header("아이템 효과")]
     public float staminaRecovery;

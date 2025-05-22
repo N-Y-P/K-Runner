@@ -71,8 +71,16 @@ public class Interact : MonoBehaviour
         current = null;
         promptText.gameObject.SetActive(false);
     }
-    public void OnInteract(InputAction.CallbackContext context)
+    public void OnInteraction(InputAction.CallbackContext context)
     {
-
+        if (context.phase == InputActionPhase.Started && current != null)
+        {
+            var itemData = (current as Item)?.itemData;
+            if (itemData != null)
+            {
+                SlotManager.Instance.AddItem(itemData);
+                Destroy((current as MonoBehaviour).gameObject);
+            }
+        }
     }
 }

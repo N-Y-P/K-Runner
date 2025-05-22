@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: St_Recovery
   m_EditorClassIdentifier: 
   itemName: "\uCCAD\uBA85\uC8FC"
-  description: "\uAE30\uB825\uC744 \uC18C\uD3ED \uD68C\uBCF5\uC2DC\uCF1C\uC900\uB2E4\n\n[E]
+  description: "\uAE30\uB825\uC744 \uC18C\uD3ED \uD68C\uBCF5\uC2DC\uCF1C\uC900\uB2E4\n\uBD80\uCC98\uB2D8\uC758
+    \uAC00\uD638\uB97C \uBC1B\uC544 \uBB34\uD55C\uD788 \uC4F8 \uC218 \uC788\uB294\uB4EF\uD558\uB2E4...\n\n[E]
     \uD0A4\uB97C \uB20C\uB7EC \uCC59\uAE30\uC790"
+  image: {fileID: 21300000, guid: f5db80ccd6bc1b04897933315ad4dcc1, type: 3}
   staminaRecovery: 10
   dash: 0
   reuseTime: 5
