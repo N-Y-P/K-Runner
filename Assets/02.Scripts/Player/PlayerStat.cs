@@ -11,7 +11,7 @@ public class PlayerStat : MonoBehaviour
     public float maxStamina = 100f;
     public float regenPerSecond = 5f;//자연회복
     public float drainPerSecond = 20f;//스태미나 소모
-    private bool isDash = false;
+    public bool isDash = false;
     public float curStamina;//현재 스태미나 공유
 
     public event Action<float, float> OnStaminaChanged;
@@ -19,16 +19,19 @@ public class PlayerStat : MonoBehaviour
     private void Start()
     {
         curStamina = maxStamina;
+        OnStaminaChanged?.Invoke(curStamina, maxStamina);
     }
     private void Update()
     {
         //isDash가 false면 회복 / true면 소모
         float delta = Time.deltaTime * (isDash ? -drainPerSecond : regenPerSecond);
-        if(delta != 0f)
+        curStamina = Mathf.Clamp(curStamina + delta, 0f, maxStamina);
+        if(isDash && curStamina <= 0f)
         {
-            curStamina = Mathf.Clamp(curStamina + delta, 0f, maxStamina);
-            OnStaminaChanged?.Invoke(curStamina, maxStamina);
+            isDash = false;
+
         }
+        OnStaminaChanged?.Invoke(curStamina, maxStamina);
     }
 
     public void SetDash(bool dash)

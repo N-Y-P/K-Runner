@@ -5,13 +5,18 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    //플레이어의 기본적인 이동, 점프, 상호작용을 다룹니다
+    //플레이어의 기본적인 이동, 점프, 슈퍼점프를 다루는 스크립트
+
     [Header("Movement")]
     public float walkSpeed;//걷는 속도
     public float dashSpeed;//달리는 속도
     public float curSpeed;//현재 속도
-    public float jumpForce;
     private Vector2 moveInput;
+
+    [Header("Jump")]
+    public float jumpForce;
+    public float superJumpForce;
+    private bool isSuperJump = false;
     public LayerMask groundLayerMask;
 
     [Header("Look")]
@@ -40,6 +45,7 @@ public class PlayerController : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        curSpeed = stat.isDash ? dashSpeed : walkSpeed;
         Move();
     }
     void Update()
@@ -69,14 +75,12 @@ public class PlayerController : MonoBehaviour
     }
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Started)
+        if (context.phase == InputActionPhase.Performed)
         {
-            curSpeed = dashSpeed;
             stat.SetDash(true);
         }
         else if (context.phase == InputActionPhase.Canceled)
         {
-            curSpeed = walkSpeed;
             stat.SetDash(false);
         }
     }
@@ -99,11 +103,13 @@ public class PlayerController : MonoBehaviour
 
     #endregion
 
+    #region Jump
     public void OnJump(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Started && isGrounded())
         {
-            rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            float force = isSuperJump ? superJumpForce : jumpForce;
+            rigidbody.AddForce(Vector3.up * force, ForceMode.Impulse);
         }
     }
 
@@ -113,4 +119,19 @@ public class PlayerController : MonoBehaviour
                                    0.2f, groundLayerMask);
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("JumpPad"))
+        {
+            isSuperJump = true;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.CompareTag("JumpPad"))
+        {
+            isSuperJump = false;
+        }
+    }
+    #endregion
 }
