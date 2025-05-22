@@ -7,8 +7,9 @@ public class PlayerController : MonoBehaviour
 {
     //플레이어의 기본적인 이동, 점프, 상호작용을 다룹니다
     [Header("Movement")]
-    public float moovSpeed;
-    public float dashSpeed;
+    public float walkSpeed;//걷는 속도
+    public float dashSpeed;//달리는 속도
+    public float curSpeed;//현재 속도
     public float jumpForce;
     private Vector2 moveInput;
     public LayerMask groundLayerMask;
@@ -31,6 +32,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        curSpeed = walkSpeed;
         Cursor.lockState = CursorLockMode.Locked;
     }
     private void FixedUpdate()
@@ -45,7 +47,7 @@ public class PlayerController : MonoBehaviour
     public void Move()
     {
         Vector3 dir = transform.forward * moveInput.y + transform.right * moveInput.x;
-        dir *= moovSpeed;
+        dir *= curSpeed;
         dir.y = rigidbody.velocity.y;
 
         rigidbody.velocity = dir;
@@ -63,6 +65,18 @@ public class PlayerController : MonoBehaviour
         }
     }
     #endregion
+
+    public void OnDash(InputAction.CallbackContext context)
+    {
+        if(context.phase == InputActionPhase.Started)
+        {
+            curSpeed = dashSpeed;
+        }
+        else if (context.phase == InputActionPhase.Canceled)
+        {
+            curSpeed = walkSpeed;
+        }
+    }
 
     #region Look
 
@@ -85,7 +99,6 @@ public class PlayerController : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Started && isGrounded())
         {
-            Debug.Log("점프 키 누름");
             rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
     }
