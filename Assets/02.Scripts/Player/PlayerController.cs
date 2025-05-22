@@ -23,10 +23,13 @@ public class PlayerController : MonoBehaviour
     private Vector2 mouseDelta;
 
     private Rigidbody rigidbody;
+    private PlayerStat stat;
 
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
+        stat = GetComponent<PlayerStat>();
+
     }
 
     // Start is called before the first frame update
@@ -43,7 +46,7 @@ public class PlayerController : MonoBehaviour
     {
         Look();
     }
-    #region Move
+    #region Move , Dash
     public void Move()
     {
         Vector3 dir = transform.forward * moveInput.y + transform.right * moveInput.x;
@@ -64,19 +67,20 @@ public class PlayerController : MonoBehaviour
             moveInput = Vector2.zero;
         }
     }
-    #endregion
-
     public void OnDash(InputAction.CallbackContext context)
     {
-        if(context.phase == InputActionPhase.Started)
+        if (context.phase == InputActionPhase.Started)
         {
             curSpeed = dashSpeed;
+            stat.SetDash(true);
         }
         else if (context.phase == InputActionPhase.Canceled)
         {
             curSpeed = walkSpeed;
+            stat.SetDash(false);
         }
     }
+    #endregion
 
     #region Look
 

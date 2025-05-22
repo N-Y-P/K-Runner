@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6069920467182824017}
   - component: {fileID: 7530578363582376067}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Incense
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -66,6 +66,10 @@ PrefabInstance:
     - target: {fileID: 3644208028886637822, guid: 0027f64857d272344a2bfea432d74a33, type: 3}
       propertyPath: m_Name
       value: SM_097_Incense_Burner
+      objectReference: {fileID: 0}
+    - target: {fileID: 3644208028886637822, guid: 0027f64857d272344a2bfea432d74a33, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4168366539555882564, guid: 0027f64857d272344a2bfea432d74a33, type: 3}
       propertyPath: m_LocalPosition.x
@@ -128,6 +132,10 @@ PrefabInstance:
     - target: {fileID: 4672045831030357449, guid: 7d471928d67fea04fa3c514ba7a6c762, type: 3}
       propertyPath: m_Name
       value: SM_097_Incense_Burner_Lid
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672045831030357449, guid: 7d471928d67fea04fa3c514ba7a6c762, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5448687332173080435, guid: 7d471928d67fea04fa3c514ba7a6c762, type: 3}
       propertyPath: m_LocalPosition.x
