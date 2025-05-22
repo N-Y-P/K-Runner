@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5902496803459051807}
   - component: {fileID: 8211025087771985417}
   - component: {fileID: 2306913101307352808}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,7 +128,19 @@ MonoBehaviour:
     m_ActionId: 5427cece-6206-43cb-998d-122f3b55b8f1
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2306913101307352808}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnJump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: a4bf0936-bb2c-431a-b061-59358d17ac09
     m_ActionName: Player/Jump[/Keyboard/space]
   - m_PersistentCalls:
@@ -136,7 +148,19 @@ MonoBehaviour:
     m_ActionId: 74cd1440-b3e7-44e7-8686-d6008edcee94
     m_ActionName: Player/Interaction[/Keyboard/e]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2306913101307352808}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnLook
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 6a9c1efa-a9e9-462d-9692-76bd417035bd
     m_ActionName: Player/Look[/Mouse/delta]
   m_NeverAutoSwitchControlSchemes: 0
@@ -156,13 +180,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cabc858827767244cbc4be798f0da36e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moovSpeed: 5
+  moovSpeed: 10
   dashSpeed: 0
-  jumpForce: 0
-  camPos: {fileID: 0}
-  minXLook: 0
-  maxXLook: 0
-  lookSensitivity: 0
+  jumpForce: 200
+  groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 55
+  camPos: {fileID: 1421405901169861739}
+  minXLook: -20
+  maxXLook: 40
+  lookSensitivity: 0.1
 --- !u!1 &4838145932301487620
 GameObject:
   m_ObjectHideFlags: 0
@@ -174,7 +201,7 @@ GameObject:
   - component: {fileID: 6915672663287688397}
   - component: {fileID: 1803431247918652128}
   - component: {fileID: 2978944970771662153}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -190,7 +217,7 @@ Transform:
   m_GameObject: {fileID: 4838145932301487620}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -6.359, z: -20.810001}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -264,7 +291,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1421405901169861739}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CameraPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -280,7 +307,7 @@ Transform:
   m_GameObject: {fileID: 5897982340842232716}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.91, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

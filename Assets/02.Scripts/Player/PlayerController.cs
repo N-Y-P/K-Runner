@@ -5,12 +5,13 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    //플레이어의 기본적인 이동, 점프, 슈퍼점프를 다룹니다
+    //플레이어의 기본적인 이동, 점프, 상호작용을 다룹니다
     [Header("Movement")]
     public float moovSpeed;
     public float dashSpeed;
     public float jumpForce;
     private Vector2 moveInput;
+    public LayerMask groundLayerMask;
 
     [Header("Look")]
     public Transform camPos;
@@ -30,7 +31,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Cursor.lockState = CursorLockMode.Locked;
     }
     private void FixedUpdate()
     {
@@ -38,7 +39,7 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
-        
+        Look();
     }
     #region Move
     public void Move()
@@ -67,18 +68,32 @@ public class PlayerController : MonoBehaviour
 
     public void Look()
     {
-
+        camCurXRot += mouseDelta.y * lookSensitivity;
+        camCurXRot = Mathf.Clamp(camCurXRot,minXLook, maxXLook);
+        camPos.localEulerAngles = new Vector3(-camCurXRot, 0, 0);
+        transform.eulerAngles += new Vector3(0, mouseDelta.x * lookSensitivity, 0);
     }
 
-    void OnLook(InputAction.CallbackContext context)
+    public void OnLook(InputAction.CallbackContext context)
     {
         mouseDelta = context.ReadValue<Vector2>();
     }
 
     #endregion
 
-    void OnJump(InputAction.CallbackContext context)
+    public void OnJump(InputAction.CallbackContext context)
     {
-
+        if (context.phase == InputActionPhase.Started && isGrounded())
+        {
+            Debug.Log("점프 키 누름");
+            rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        }
     }
+
+    bool isGrounded()
+    {
+        return Physics.CheckSphere(transform.position + Vector3.down * 0.1f,
+                                   0.2f, groundLayerMask);
+    }
+
 }
