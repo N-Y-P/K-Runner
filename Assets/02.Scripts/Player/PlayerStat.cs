@@ -12,7 +12,7 @@ public class PlayerStat : MonoBehaviour
     public float regenPerSecond = 5f;//자연회복
     public float drainPerSecond = 20f;//스태미나 소모
     public bool isDash = false;
-    public float curStamina;//현재 스태미나 공유
+    public float curStamina;//현재 스태미나 
 
     public event Action<float, float> OnStaminaChanged;
 

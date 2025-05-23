@@ -14,7 +14,8 @@ public class PlayerController : MonoBehaviour
     public float dashSpeed;//달리는 속도
     public float curSpeed;//현재 속도
     private Vector2 moveInput;
-    [HideInInspector] public bool dashBuffActive = false;
+    //대시 아이템 사용 시 현재 속도를 대시 속도로, 그 동안 대시 키는 사용하지 못하게
+    [HideInInspector] public bool dashItemActive = false;
 
     [Header("Jump")]
     public float jumpForce;
@@ -47,8 +48,8 @@ public class PlayerController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        //curSpeed = stat.isDash ? dashSpeed : walkSpeed;
-        bool isDashingForMovement = stat.isDash || dashBuffActive;
+        //대시 키를 사용중이거나, 아이템을 사용중이면 true, 둘다 사용하지 않는다면 false
+        bool isDashingForMovement = stat.isDash || dashItemActive;
         curSpeed = isDashingForMovement ? dashSpeed : walkSpeed;
         Move();
     }
@@ -79,7 +80,7 @@ public class PlayerController : MonoBehaviour
     }
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (dashBuffActive) return;
+        if (dashItemActive) return;//대시 아이템을 사용한다면 아래 기능 사용 못하게
         if (context.phase == InputActionPhase.Performed)
         {
             stat.SetDash(true);

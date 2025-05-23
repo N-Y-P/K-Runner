@@ -36,9 +36,9 @@ public class ItemUse : MonoBehaviour
 
     private IEnumerator DashBuffRoutine(float buffDuration)
     {
-        PlayerAutoBinder.Instance.PlayerController.dashBuffActive = true;
+        PlayerAutoBinder.Instance.PlayerController.dashItemActive = true;
         yield return new WaitForSeconds(buffDuration);
 
-        PlayerAutoBinder.Instance.PlayerController.dashBuffActive = false;
+        PlayerAutoBinder.Instance.PlayerController.dashItemActive = false;
     }
 }
