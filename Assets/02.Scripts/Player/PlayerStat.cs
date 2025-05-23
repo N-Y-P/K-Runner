@@ -28,6 +28,7 @@ public class PlayerStat : MonoBehaviour
         curStamina = Mathf.Clamp(curStamina + delta, 0f, maxStamina);
         if(isDash && curStamina <= 0f)
         {
+            //달리는 중인데 현재 스테미나가 0이하가 되면 
             isDash = false;
 
         }
@@ -48,7 +49,7 @@ public class PlayerStat : MonoBehaviour
             isDash = false;
         }
     }
-    public void RecoverStamina(float amount)
+    public void RecoverStamina(float amount)//스태미나 회복 아이템이 사용
     {
         curStamina = Mathf.Clamp(curStamina + amount, 0f, maxStamina);
         OnStaminaChanged?.Invoke(curStamina, maxStamina);

@@ -55,7 +55,11 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
-        Look();
+        if(Time.timeScale>0.5f)
+        {
+            Look();
+        }
+
     }
     #region Move , Dash
     public void Move()

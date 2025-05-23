@@ -25,25 +25,25 @@ public class Stamina : MonoBehaviour
             playerStat.OnStaminaChanged -= UpdateFill;
     }
 
-    // 씬 로드 콜백
+    // 씬 로드
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         BindAndSubscribe();
     }
 
-    // PlayerStat 재바인딩 + 이벤트 구독
+    // PlayerStat 재바인딩
     private void BindAndSubscribe()
     {
         // 이전 구독 해제
         if (playerStat != null)
             playerStat.OnStaminaChanged -= UpdateFill;
 
-        // PlayerAutoBinder에서 최신 PlayerStat 가져오기
+        // PlayerAutoBinder에서 최신 PlayerStat 가져오기(씬 이동됐을 때 그 씬에 있는 PlayerStat을 가져오기 위함)
         playerStat = PlayerAutoBinder.Instance.PlayerStat;
         if (playerStat != null)
         {
             playerStat.OnStaminaChanged += UpdateFill;
-            // UI 초기값 갱신
+            // UI 초기값 갱신(처음 씬에서 스태미나 소모됐을 때 다음 씬에서 반영 안되도록)
             UpdateFill(playerStat.curStamina, playerStat.maxStamina);
         }
     }
