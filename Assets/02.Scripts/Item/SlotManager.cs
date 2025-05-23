@@ -41,24 +41,26 @@ public class SlotManager : MonoBehaviour
     }
     public ItemData UseSlot(int index)
     {
-        //index가 1보다 작거나 실제 슬롯 개수보다 크면
+        // 1) 슬롯 유효성
         if (index < 1 || index > slots.Count)
         {
+            Debug.Log("아직 아이템이 없음");
             return null;
         }
 
         var slot = slots[index - 1];
 
-        //아이템 사용가능하지 않은 상태. 쿨타임 중
+        // 2) 쿨타임 중인지
         if (!slot.isAvailable)
         {
+            Debug.Log("아직 쿨타임 중입니다");
             return null;
         }
 
-        //UI 쿨다운 시작
+        // 3) UI 쿨다운 시작
         StartCoroutine(slot.CooldownRoutine());
 
-        //실제 데이터 반환
+        // 4) 실제 데이터 반환
         return slot.Data;
     }
 }

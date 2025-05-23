@@ -12,7 +12,7 @@ public class ItemSlot : MonoBehaviour
     public Image fillImage;
     public TextMeshProUGUI reuseText;
     public TextMeshProUGUI indexText;
-    [HideInInspector] public bool isAvailable = true;//처음은 사용가능한 상태
+    [HideInInspector] public bool isAvailable = true;
     private ItemData data;
 
     public ItemData Data => data;
