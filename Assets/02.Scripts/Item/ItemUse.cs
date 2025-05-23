@@ -10,12 +10,35 @@ public class ItemUse : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            SlotManager.Instance.UseSlot(1);
-        }
+            HandleUse(1);
         else if (Input.GetKeyDown(KeyCode.Alpha2))
+            HandleUse(2);
+    }
+
+    private void HandleUse(int slotIndex)
+    {
+        //슬롯에서 데이터 꺼내기
+        var data = SlotManager.Instance.UseSlot(slotIndex);
+        if (data == null) return;
+
+        // 스태미나 회복 효과
+        if (data.staminaRecovery > 0f)
         {
-            SlotManager.Instance.UseSlot(2);
+            PlayerAutoBinder.Instance.PlayerStat.RecoverStamina(data.staminaRecovery);
         }
+
+        //스태미나 소모 없이 일정 시간 동안 현재 속도를 대시 속도로
+        if (data.dash > 0f)
+        {
+            StartCoroutine(DashBuffRoutine(data.duration));
+        }
+    }
+
+    private IEnumerator DashBuffRoutine(float buffDuration)
+    {
+        PlayerAutoBinder.Instance.PlayerController.dashBuffActive = true;
+        yield return new WaitForSeconds(buffDuration);
+
+        PlayerAutoBinder.Instance.PlayerController.dashBuffActive = false;
     }
 }

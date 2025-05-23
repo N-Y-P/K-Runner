@@ -22,19 +22,19 @@ public class ItemSlot : MonoBehaviour
         this.data = data;
         icon.sprite = data.image;
         indexText.text = index.ToString();
-        reuseText.text = "";                  // 처음엔 빈칸
-        fillImage.fillAmount = 1f;             // 사용 가능 상태
+        reuseText.text = ""; // 처음엔 빈칸
+        fillImage.fillAmount = 0f;
     }
 
-    public IEnumerator CooldownRoutine()
+    public IEnumerator CooldownRoutine()//쿨타임 코루틴
     {
-        isAvailable = false;
+        isAvailable = false;//쿨타임 중에는 사용 불가
         float timeLeft = data.reuseTime;
         fillImage.fillAmount = 1f;
 
         while (timeLeft > 0f)
         {
-            // 초 단위로 카운트다운 (5,4,3…)
+            // 초 단위로 카운트다운 
             reuseText.text = Mathf.Ceil(timeLeft).ToString();
             timeLeft -= Time.deltaTime;
             fillImage.fillAmount = Mathf.Clamp01((data.reuseTime - timeLeft) / data.reuseTime);
@@ -42,8 +42,8 @@ public class ItemSlot : MonoBehaviour
         }
 
         // 쿨타임 끝
-        reuseText.text = "";
+        reuseText.text = "";//텍스트 다시 비우기
         fillImage.fillAmount = 0f;
-        isAvailable = true;
+        isAvailable = true;//이제 다시 사용가능하다
     }
 }

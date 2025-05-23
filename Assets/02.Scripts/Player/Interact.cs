@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class Interact : MonoBehaviour
 {
     //레이캐스트로 interactable 레이어를 가진 아이템을 보면 그 아이템의 promptText가 뜨도록
+    //E키를 누르면 상호작용 되도록
 
     [Header("레이어 마스크")]
     public LayerMask interactLayerMask;
@@ -66,6 +67,7 @@ public class Interact : MonoBehaviour
             if (itemData != null)
             {
                 SlotManager.Instance.AddItem(itemData);
+                //current가 interface라서 current.gameObject라고 쓸 수 없음
                 Destroy((current as MonoBehaviour).gameObject);
             }
         }
