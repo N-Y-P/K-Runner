@@ -17,7 +17,7 @@ MonoBehaviour:
     \uBE60\uB974\uAC8C \uB2EC\uB9B4 \uC218 \uC788\uB2E4\n\uBD80\uCC98\uB2D8\uC758
     \uAC00\uD638\uB97C \uBC1B\uC544 \uBB34\uD55C\uD788 \uC4F8 \uC218 \uC788\uB294\uB4EF\uD558\uB2E4...\n\n[E]
     \uD0A4\uB97C \uB20C\uB7EC \uCC59\uAE30\uC790"
-  image: {fileID: 21300000, guid: 64b8025aad6941946a444b8a28aeaee3, type: 3}
+  image: {fileID: 21300000, guid: 26895e4810e187442903ab09bba64c2e, type: 3}
   staminaRecovery: 0
   dash: 10
   duration: 2

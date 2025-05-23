@@ -11,6 +11,7 @@ public class Spawn : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
+            Debug.Log("플레이어 죽음?");
             player.transform.position = spawnPoint.position;
         }
     }
