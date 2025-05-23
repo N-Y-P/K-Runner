@@ -48,4 +48,9 @@ public class PlayerStat : MonoBehaviour
             isDash = false;
         }
     }
+    public void RecoverStamina(float amount)
+    {
+        curStamina = Mathf.Clamp(curStamina + amount, 0f, maxStamina);
+        OnStaminaChanged?.Invoke(curStamina, maxStamina);
+    }
 }

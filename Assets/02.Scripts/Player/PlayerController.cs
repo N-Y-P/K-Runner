@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Build.Content;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public float dashSpeed;//달리는 속도
     public float curSpeed;//현재 속도
     private Vector2 moveInput;
+    [HideInInspector] public bool dashBuffActive = false;
 
     [Header("Jump")]
     public float jumpForce;
@@ -45,7 +48,9 @@ public class PlayerController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        curSpeed = stat.isDash ? dashSpeed : walkSpeed;
+        //curSpeed = stat.isDash ? dashSpeed : walkSpeed;
+        bool isDashingForMovement = stat.isDash || dashBuffActive;
+        curSpeed = isDashingForMovement ? dashSpeed : walkSpeed;
         Move();
     }
     void Update()
@@ -75,6 +80,7 @@ public class PlayerController : MonoBehaviour
     }
     public void OnDash(InputAction.CallbackContext context)
     {
+        if (dashBuffActive) return;
         if (context.phase == InputActionPhase.Performed)
         {
             stat.SetDash(true);
@@ -124,6 +130,10 @@ public class PlayerController : MonoBehaviour
         if(other.CompareTag("JumpPad"))
         {
             isSuperJump = true;
+        }
+        else if (other.CompareTag("Statue")) 
+        {
+            SceneManager.LoadScene(1);
         }
     }
     private void OnTriggerExit(Collider other)
