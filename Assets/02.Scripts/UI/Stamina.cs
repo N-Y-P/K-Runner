@@ -17,7 +17,6 @@ public class Stamina : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
         BindAndSubscribe();
     }
-
     private void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
@@ -25,16 +24,15 @@ public class Stamina : MonoBehaviour
             playerStat.OnStaminaChanged -= UpdateFill;
     }
 
-    // 씬 로드 콜백
+    // 씬 로드
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         BindAndSubscribe();
     }
 
-    // PlayerStat 재바인딩 + 이벤트 구독
+    // PlayerStat 재바인딩
     private void BindAndSubscribe()
     {
-        // 이전 구독 해제
         if (playerStat != null)
             playerStat.OnStaminaChanged -= UpdateFill;
 
