@@ -55,7 +55,11 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
-        Look();
+        if (Time.timeScale > 0.5f)
+        {
+            Look();
+
+        }
     }
     #region Move , Dash
     public void Move()
@@ -97,7 +101,7 @@ public class PlayerController : MonoBehaviour
     public void Look()
     {
         camCurXRot += mouseDelta.y * lookSensitivity;
-        camCurXRot = Mathf.Clamp(camCurXRot,minXLook, maxXLook);
+        camCurXRot = Mathf.Clamp(camCurXRot, minXLook, maxXLook);
         camPos.localEulerAngles = new Vector3(-camCurXRot, 0, 0);
         transform.eulerAngles += new Vector3(0, mouseDelta.x * lookSensitivity, 0);
     }
@@ -127,18 +131,18 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("JumpPad"))
+        if (other.CompareTag("JumpPad"))
         {
             isSuperJump = true;
         }
-        else if (other.CompareTag("Statue")) 
+        else if (other.CompareTag("Statue"))
         {
             SceneManager.LoadScene(1);
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        if(other.CompareTag("JumpPad"))
+        if (other.CompareTag("JumpPad"))
         {
             isSuperJump = false;
         }
