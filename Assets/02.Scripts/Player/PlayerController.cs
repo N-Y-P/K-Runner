@@ -139,6 +139,14 @@ public class PlayerController : MonoBehaviour
         {
             SceneManager.LoadScene(1);
         }
+        else if (other.CompareTag("Finish"))
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit(); // 어플리케이션 종료
+#endif
+        }
     }
     private void OnTriggerExit(Collider other)
     {
