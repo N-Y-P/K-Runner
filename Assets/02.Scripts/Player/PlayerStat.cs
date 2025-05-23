@@ -48,7 +48,7 @@ public class PlayerStat : MonoBehaviour
             isDash = false;
         }
     }
-    public void RecoverStamina(float amount)
+    public void RecoverStamina(float amount)//스태미나 회복 아이템이 사용
     {
         curStamina = Mathf.Clamp(curStamina + amount, 0f, maxStamina);
         OnStaminaChanged?.Invoke(curStamina, maxStamina);

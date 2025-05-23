@@ -36,7 +36,7 @@ public class Stamina : MonoBehaviour
         if (playerStat != null)
             playerStat.OnStaminaChanged -= UpdateFill;
 
-        // PlayerAutoBinder에서 최신 PlayerStat 가져오기
+        // PlayerAutoBinder에서 최신 PlayerStat 가져오기(씬 변경 됐을 때 해당 씬에 있는 PlayerStat 가져오게하기 위함)
         playerStat = PlayerAutoBinder.Instance.PlayerStat;
         if (playerStat != null)
         {
